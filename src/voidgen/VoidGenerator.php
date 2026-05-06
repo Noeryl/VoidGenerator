@@ -11,7 +11,7 @@ final class VoidGenerator extends PluginBase{
 
     protected function onLoad() : void{
         $manager = GeneratorManager::getInstance();
-        $manager->addGenerator(VoidGenClass::class, "void", fn() => null);
+        $manager->addGenerator(VoidGenClass::class, "void", fn() => null, true, true);
         $manager->addAlias("void", "empty");
     }
 }
