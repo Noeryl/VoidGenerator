@@ -8,12 +8,14 @@ use pocketmine\block\Block;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\data\bedrock\BiomeIds;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\Limits;
 use pocketmine\world\ChunkManager;
 use pocketmine\world\format\Chunk;
 use pocketmine\world\format\PalettedBlockArray;
 use pocketmine\world\format\SubChunk;
 use pocketmine\world\generator\Generator;
 use pocketmine\world\generator\GeneratorManager;
+use function random_int;
 use function rmdir;
 
 final class VoidGenerator extends PluginBase{
@@ -23,7 +25,7 @@ final class VoidGenerator extends PluginBase{
     protected function onLoad() : void{
         rmdir($this->getDataFolder());
 
-        $class = new class extends Generator{
+        $class = new class(random_int(Limits::INT32_MIN, Limits::INT32_MAX), "") extends Generator{
 
             public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ) : void{
                 $chunk = new Chunk([], false);
