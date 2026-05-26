@@ -14,12 +14,15 @@ use pocketmine\world\format\PalettedBlockArray;
 use pocketmine\world\format\SubChunk;
 use pocketmine\world\generator\Generator;
 use pocketmine\world\generator\GeneratorManager;
+use function rmdir;
 
 final class VoidGenerator extends PluginBase{
 
     public const SPAWN_Y = 49;
 
     protected function onLoad() : void{
+        rmdir($this->getDataFolder());
+
         $class = new class extends Generator{
 
             public function generateChunk(ChunkManager $world, int $chunkX, int $chunkZ) : void{
